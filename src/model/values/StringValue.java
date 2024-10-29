@@ -1,0 +1,31 @@
+package model.values;
+
+import model.types.IType;
+import model.types.StringType;
+
+public class StringValue implements IValue{
+
+    private String val;
+
+    public StringValue(String val){
+        this.val = val;
+    }
+
+    public String getVal(){
+        return val;
+    }
+
+    public String toString(){
+        return val;
+    }
+
+
+    @Override
+    public IType getType() {
+        return new StringType();
+    }
+
+    public boolean equals(IValue other){
+        return other instanceof StringValue && this.val.equals(((StringValue) other).val);
+    }
+}
