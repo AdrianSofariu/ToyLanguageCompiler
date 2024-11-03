@@ -60,6 +60,10 @@ public class PrgState {
         this.execStack = execStack;
     }
 
+    public MyIDictionary<StringValue, BufferedReader> getFileTable() {
+        return fileTable;
+    }
+
     public String FileTableToString() {
         StringBuilder text = new StringBuilder();
         text.append("File Table:\n");

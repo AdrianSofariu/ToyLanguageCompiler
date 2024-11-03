@@ -15,6 +15,10 @@ public class StringValue implements IValue{
         return val;
     }
 
+    public void setValue(String value){
+        this.val = value;
+    }
+
     public String toString(){
         return val;
     }

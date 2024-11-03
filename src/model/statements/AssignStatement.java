@@ -41,10 +41,10 @@ public class AssignStatement implements IStatement {
 
     @Override
     public IStatement deepCopy() {
-        return new AssignStatement(this.variableName, this.expression.deepCopy());
+        return new AssignStatement(variableName, expression.deepCopy());
     }
 
     public String toString() {
-        return this.variableName + " = " + this.expression.toString();
+        return variableName + " = " + expression.toString();
     }
 }

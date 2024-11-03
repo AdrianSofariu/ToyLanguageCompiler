@@ -23,7 +23,7 @@ public class CompoundStatement implements IStatement {
 
     @Override
     public IStatement deepCopy() {
-        return new CompoundStatement(this.statement1.deepCopy(), this.statement2.deepCopy());
+        return new CompoundStatement(statement1.deepCopy(), statement2.deepCopy());
     }
 
     public String toString(){

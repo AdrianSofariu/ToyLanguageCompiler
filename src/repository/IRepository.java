@@ -1,9 +1,14 @@
 package repository;
 
+import exceptions.RepositoryException;
 import model.state.PrgState;
+
+import java.util.List;
 
 public interface IRepository {
 
     PrgState getCurrentProgram();
-    void setCurrentProgram(PrgState currentProgram);
+    List<PrgState> getStates();
+    void addPrgState(PrgState prgState);
+    void logPrgStateExec() throws RepositoryException;
 }

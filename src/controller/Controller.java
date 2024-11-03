@@ -23,7 +23,7 @@ public class Controller {
     }
 
     public void setCurrentProgram(PrgState prg){
-        repo.setCurrentProgram(prg);
+        repo.addPrgState(prg);
     }
 
     public PrgState oneStep(PrgState state) throws StatementException, ExpressionException, ADTException {
@@ -50,6 +50,7 @@ public class Controller {
 
         //get the current program
         PrgState prg = repo.getCurrentProgram();
+        repo.logPrgStateExec();
 
         //display the initial state
         if(displayFlag){
@@ -59,6 +60,7 @@ public class Controller {
         //execute all the statements in the program
         while(!prg.getExecStack().isEmpty()){
             oneStep(prg);
+            repo.logPrgStateExec();
         }
 
         //return final state

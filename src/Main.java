@@ -6,7 +6,7 @@ import view.View;
 public class Main {
     public static void main(String[] args) {
 
-        IRepository repo = new MyRepository();
+        IRepository repo = new MyRepository("log.txt");
         Controller ctrl = new Controller(repo);
         View view = new View(ctrl);
 

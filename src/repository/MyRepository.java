@@ -1,26 +1,55 @@
 package repository;
 
+import exceptions.RepositoryException;
 import model.adt.MyList;
 import model.state.PrgState;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MyRepository implements IRepository{
 
-    private MyList<PrgState> prgStateList;
-    private PrgState currentProgram;
+    private List<PrgState> prgStateList;
+    private String filename;
+    private int currentIndex;
 
-    public MyRepository() {
-        prgStateList = new MyList<>();
+    public MyRepository(String filename) {
+        prgStateList = new ArrayList<PrgState>();
+        this.filename = filename;
+        currentIndex = 0;
     }
 
     @Override
-    public void setCurrentProgram(PrgState currentProgram) {
-        this.currentProgram = currentProgram;
+    public List<PrgState> getStates() {
+        return this.prgStateList;
+    }
+
+    @Override
+    public void addPrgState(PrgState prgState) {
+        //prgStateList.add(prgState);
+        prgStateList.addFirst(prgState);
     }
 
     @Override
     public PrgState getCurrentProgram() {
-        return currentProgram;
+        return prgStateList.get(currentIndex);
+    }
+
+    @Override
+    public void logPrgStateExec() throws RepositoryException {
+        try{
+            PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(filename, true)));
+            logFile.println(getCurrentProgram().toString());
+            logFile.close();
+        }
+        catch (IOException e){
+            throw new RepositoryException("Could not open log file");
+        }
     }
 
 }
