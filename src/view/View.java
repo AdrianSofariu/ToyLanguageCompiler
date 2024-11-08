@@ -12,6 +12,7 @@ import model.state.PrgState;
 import model.statements.*;
 import model.types.BoolType;
 import model.types.IntType;
+import model.types.StringType;
 import model.values.BoolValue;
 import model.values.IValue;
 import model.values.IntValue;
@@ -24,7 +25,6 @@ public class View {
     Controller controller;
     int option;
 
-    //hardcoded programs that will be removed
     IStatement ex1 = new CompoundStatement(new VarDecStatement("v", new IntType()),
             new CompoundStatement(new AssignStatement("v", new ValueExpression(new IntValue(2))),
                     new PrintStatement(new VariableExpression("v"))));
@@ -45,6 +45,16 @@ public class View {
                     new AssignStatement("v", new ValueExpression(new IntValue(2))),
                     new AssignStatement("v", new ValueExpression(new IntValue(3)))),
                     new PrintStatement(new VariableExpression("v"))))));
+
+    IStatement ex4 = new CompoundStatement(new VarDecStatement("varf", new StringType()),
+                    new CompoundStatement(new AssignStatement("varf", new ValueExpression(new StringValue("test.in"))),
+                    new CompoundStatement(new OpenRFileStatement(new VariableExpression("varf")),
+                    new CompoundStatement(new VarDecStatement("varc", new IntType()),
+                    new CompoundStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
+                    new CompoundStatement(new PrintStatement(new VariableExpression("varc")),
+                    new CompoundStatement(new ReadFileStatement(new VariableExpression("varf"), "varc"),
+                    new CompoundStatement(new PrintStatement(new VariableExpression("varc")),
+                    new CloseRFileStatement(new VariableExpression("varf"))))))))));
 
     public View(Controller controller) {
         this.controller = controller;
@@ -81,17 +91,17 @@ public class View {
         PrgState prg;
         switch(example){
             case 1:
-                prg = new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), ex1);
+                prg = new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), ex4);
                 controller.setCurrentProgram(prg);
                 break;
-            case 2:
-                prg = new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), ex2);
-                controller.setCurrentProgram(prg);
-                break;
-            case 3:
-                prg = new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), ex3);
-                controller.setCurrentProgram(prg);
-                break;
+//            case 2:
+//                prg = new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), ex4);
+//                controller.setCurrentProgram(prg);
+//                break;
+//            case 3:
+//                prg = new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), ex4);
+//                controller.setCurrentProgram(prg);
+//                break;
             case 0:
                 return;
             default:
