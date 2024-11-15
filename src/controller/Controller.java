@@ -50,6 +50,9 @@ public class Controller {
 
         //get the current program
         PrgState prg = repo.getCurrentProgram();
+
+        //clear the log file
+        repo.clearLogFile();
         repo.logPrgStateExec();
 
         //display the initial state

@@ -4,10 +4,7 @@ import controller.Controller;
 import model.adt.MyDictionary;
 import model.adt.MyList;
 import model.adt.MyStack;
-import model.expressions.ArithmeticExpression;
-import model.expressions.ArithmeticalOperator;
-import model.expressions.ValueExpression;
-import model.expressions.VariableExpression;
+import model.expressions.*;
 import model.state.PrgState;
 import model.statements.*;
 import model.types.BoolType;
@@ -56,6 +53,11 @@ public class View {
                     new CompoundStatement(new PrintStatement(new VariableExpression("varc")),
                     new CloseRFileStatement(new VariableExpression("varf"))))))))));
 
+    //make a statement for if(2 < 3) then print(4) else print(5)
+    IStatement ex5 = new IfStatement(new RelationalExpression(new ValueExpression(new IntValue(2)), ComparisonOperator.LESS,
+            new ValueExpression(new IntValue(3))), new PrintStatement(new ValueExpression(new IntValue(4))),
+            new PrintStatement(new ValueExpression(new IntValue(5))));
+
     public View(Controller controller) {
         this.controller = controller;
     }
@@ -91,7 +93,7 @@ public class View {
         PrgState prg;
         switch(example){
             case 1:
-                prg = new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), ex4);
+                prg = new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), ex5);
                 controller.setCurrentProgram(prg);
                 break;
 //            case 2:

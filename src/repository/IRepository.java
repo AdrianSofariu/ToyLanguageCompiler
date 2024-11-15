@@ -11,4 +11,5 @@ public interface IRepository {
     List<PrgState> getStates();
     void addPrgState(PrgState prgState);
     void logPrgStateExec() throws RepositoryException;
+    void clearLogFile() throws RepositoryException;
 }

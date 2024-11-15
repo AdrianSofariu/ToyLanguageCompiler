@@ -25,8 +25,6 @@ public enum ArithmeticalOperator {
             return "/";
         }
     };
-
-    public String symbol;
 }
 
 

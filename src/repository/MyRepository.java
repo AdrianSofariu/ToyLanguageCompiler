@@ -44,7 +44,18 @@ public class MyRepository implements IRepository{
     public void logPrgStateExec() throws RepositoryException {
         try{
             PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(filename, true)));
-            logFile.println(getCurrentProgram().toString());
+            logFile.println(getCurrentProgram());
+            logFile.close();
+        }
+        catch (IOException e){
+            throw new RepositoryException("Could not open log file");
+        }
+    }
+
+    @Override
+    public void clearLogFile() throws RepositoryException {
+        try{
+            PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(filename, false)));
             logFile.close();
         }
         catch (IOException e){

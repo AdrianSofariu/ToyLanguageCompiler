@@ -7,7 +7,6 @@ import model.types.IntType;
 import model.types.StringType;
 import model.values.IntValue;
 import model.values.StringValue;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 
