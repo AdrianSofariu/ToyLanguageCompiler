@@ -16,7 +16,7 @@ public class PrintStatement implements IStatement {
     public PrgState execute(PrgState state) {
 
         //evaluate the expression
-        IValue result = expression.eval(state.getSymTable());
+        IValue result = expression.eval(state.getSymTable(), state.getHeap());
 
         //add it as a string to the output list
         state.getOutputList().add(result.toString());
@@ -29,6 +29,6 @@ public class PrintStatement implements IStatement {
     }
 
     public String toString(){
-        return "print(" + expression.toString() + ")";
+        return "print(" + expression + ")";
     }
 }

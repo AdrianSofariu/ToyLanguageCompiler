@@ -3,6 +3,7 @@ package model.expressions;
 import exceptions.ADTException;
 import exceptions.ExpressionException;
 import model.adt.MyIDictionary;
+import model.adt.MyIHeap;
 import model.types.IntType;
 import model.values.BoolValue;
 import model.values.IValue;
@@ -21,11 +22,11 @@ public class RelationalExpression implements IExpression{
     }
 
     @Override
-    public IValue eval(MyIDictionary<String, IValue> symTable) throws ADTException, ExpressionException {
+    public IValue eval(MyIDictionary<String, IValue> symTable, MyIHeap heap) throws ADTException, ExpressionException {
 
         //evaluate both sides of the expression
-        IValue leftVal = left.eval(symTable);
-        IValue rightVal = right.eval(symTable);
+        IValue leftVal = left.eval(symTable, heap);
+        IValue rightVal = right.eval(symTable, heap);
 
         //check if they are both numeric values
         if(!leftVal.getType().equals(new IntType())){
@@ -72,6 +73,6 @@ public class RelationalExpression implements IExpression{
 
     @Override
     public String toString() {
-        return left.toString() + " " + operator.toString() + " " + right.toString();
+        return left + " " + operator + " " + right;
     }
 }

@@ -2,6 +2,7 @@ package model.adt;
 
 import exceptions.KeyNotFoundException;
 
+import java.util.Map;
 import java.util.Set;
 
 public interface MyIDictionary<K, V> {
@@ -11,4 +12,5 @@ public interface MyIDictionary<K, V> {
     boolean contains(K key);
     V get(K key) throws KeyNotFoundException;
     Set<K> getKeys();
+    Map<K, V> getMap();
 }

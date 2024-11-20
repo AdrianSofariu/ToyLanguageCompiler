@@ -45,10 +45,17 @@ public class MyDictionary<K,V> implements MyIDictionary<K,V>{
         return map.keySet();
     }
 
+    @Override
+    public Map<K, V> getMap() {
+        return map;
+    }
+
     public String toString() {
         StringBuilder str = new StringBuilder();
         for(K key : map.keySet())
             str.append(key).append(" -> ").append(map.get(key)).append("\n");
         return str.toString();
     }
+
+
 }

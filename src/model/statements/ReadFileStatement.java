@@ -34,7 +34,7 @@ public class ReadFileStatement implements IStatement {
             throw new StatementException("Variable is not of type int");
         }
 
-        var result = expression.eval(table);
+        var result = expression.eval(table, state.getHeap());
 
         if(!result.getType().equals(new StringType())){
             throw new StatementException("Expression is not of type string");
@@ -63,6 +63,6 @@ public class ReadFileStatement implements IStatement {
     }
 
     public String toString(){
-        return "readFile(" + expression.toString() + ", " + variableName + ")";
+        return "readFile(" + expression + ", " + variableName + ")";
     }
 }

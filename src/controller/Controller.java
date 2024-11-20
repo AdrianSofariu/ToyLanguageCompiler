@@ -7,7 +7,15 @@ import exceptions.StatementException;
 import model.adt.MyIStack;
 import model.state.PrgState;
 import model.statements.IStatement;
+import model.values.IValue;
+import model.values.RefValue;
 import repository.IRepository;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -64,9 +72,66 @@ public class Controller {
         while(!prg.getExecStack().isEmpty()){
             oneStep(prg);
             repo.logPrgStateExec();
+            List<Integer> symTableAddresses = getAddrFromSymTable(prg.getSymTable().getMap().values());
+            List<Integer> indirectRefAddr = getIndirectlyReferencedAddresses(
+                symTableAddresses,
+                prg.getHeap().getContent()
+            );
+            prg.getHeap().setContent(garbageCollector(
+                symTableAddresses,
+                indirectRefAddr,
+                prg.getHeap().getContent()
+            ));
+            repo.logPrgStateExec();
         }
 
         //return final state
         return prg;
     }
+
+    //eliminate all addresses from the heap that are not referenced by other heap entries or by the symbol table
+    Map<Integer, IValue> garbageCollector(List<Integer> symTableAddresses, List<Integer> indirectRefAddr, Map<Integer, IValue> heap){
+        return heap.entrySet().stream()
+            .filter(e -> symTableAddresses.contains(e.getKey()) || indirectRefAddr.contains(e.getKey()))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    //get all addresses from reference values in the symbol table
+    List<Integer> getAddrFromSymTable(Collection<IValue> symTableValues){
+        return symTableValues.stream()
+            .filter(v -> v instanceof RefValue)
+            .map(v -> {RefValue v1 = (RefValue) v; return v1.getAddr();})
+            .collect(Collectors.toList());
+
+    }
+
+    //given a list of addresses, return a list of all other addresses that are indirectly referenced by the given addresses
+    //do it using streams
+    List<Integer> getIndirectlyReferencedAddresses(List<Integer> addresses, Map<Integer, IValue> heap){
+        List<Integer> indirectlyReferencedAddresses = new ArrayList<>();
+
+        //go through all pairs in the heap
+        heap.forEach((k, v) -> {
+
+            //recursively collect all addresses that are indirectly referenced
+            //until we reach an address that is in the list of addresses
+            //or we reach an address that is not a reference value
+            List<Integer> addressesToCheck = new ArrayList<>();
+            IValue val = v;
+            Integer key = k;
+            while (val instanceof RefValue && !addresses.contains(((RefValue) val).getAddr())) {
+                key = ((RefValue) val).getAddr();
+                addressesToCheck.add(key);
+                val = heap.get(key);
+            }
+
+            //if we reached an address that is in the list of addresses, add all the addresses we checked to the list
+            if (addresses.contains(k)) {
+                indirectlyReferencedAddresses.addAll(addressesToCheck);
+            }
+        });
+
+        return indirectlyReferencedAddresses;
+    }
+
 }

@@ -21,7 +21,7 @@ public class CloseRFileStatement implements IStatement{
     @Override
     public PrgState execute(PrgState state) throws StatementException {
 
-        IValue result = exp.eval(state.getSymTable());
+        IValue result = exp.eval(state.getSymTable(), state.getHeap());
 
         //check if the expression evaluates to a string
         if(!result.getType().equals(new StringType())){
@@ -54,6 +54,6 @@ public class CloseRFileStatement implements IStatement{
     }
 
     public String toString(){
-        return "closeRFile(" + exp.toString() + ")";
+        return "closeRFile(" + exp + ")";
     }
 }

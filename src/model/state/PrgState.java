@@ -1,6 +1,7 @@
 package model.state;
 
 import model.adt.MyIDictionary;
+import model.adt.MyIHeap;
 import model.adt.MyIList;
 import model.adt.MyIStack;
 import model.statements.IStatement;
@@ -16,15 +17,16 @@ public class PrgState {
     private MyIDictionary<StringValue, BufferedReader> fileTable;
     private MyIStack<IStatement> execStack;
     private IStatement initialState;
+    private MyIHeap heap;
 
 
-    public PrgState(MyIList<String> outputList, MyIDictionary<String, IValue> symTable, MyIDictionary<StringValue, BufferedReader> fileTable, MyIStack<IStatement> execStack, IStatement initialState) {
+    public PrgState(MyIList<String> outputList, MyIDictionary<String, IValue> symTable, MyIDictionary<StringValue, BufferedReader> fileTable, MyIStack<IStatement> execStack, MyIHeap heap, IStatement initialState) {
         this.outputList = outputList;
         this.symTable = symTable;
         this.execStack = execStack;
         this.fileTable = fileTable;
+        this.heap = heap;
         this.initialState = initialState.deepCopy();
-
         this.execStack.push(this.initialState);
     }
 
@@ -64,6 +66,14 @@ public class PrgState {
         return fileTable;
     }
 
+    public MyIHeap getHeap() {
+        return heap;
+    }
+
+    public void setHeap(MyIHeap heap) {
+        this.heap = heap;
+    }
+
     public String FileTableToString() {
         StringBuilder text = new StringBuilder();
         text.append("File Table:\n");
@@ -76,9 +86,10 @@ public class PrgState {
     @Override
     public String toString() {
         String output = "-------Program State-------\n";
-        output += "Symbol Table:\n" + symTable.toString() +
-                "\nExecution Stack:\n" + execStack.toString() +
-                "\nOutput List:\n" + outputList.toString() + "\n" + FileTableToString();
+        output += "Symbol Table:\n" + symTable +
+                "\nExecution Stack:\n" + execStack+
+                "\nOutput List:\n" + outputList + "\n" + FileTableToString() +
+                "\nHeap:\n" + heap;
         output += "\n---------------------------\n";
         return output;
     }

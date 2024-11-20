@@ -29,6 +29,6 @@ public class VarDecStatement implements IStatement{
     }
 
     public String toString() {
-        return typ.toString() + " " + variableName;
+        return typ + " " + variableName;
     }
 }

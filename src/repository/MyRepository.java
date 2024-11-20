@@ -31,8 +31,7 @@ public class MyRepository implements IRepository{
 
     @Override
     public void addPrgState(PrgState prgState) {
-        //prgStateList.add(prgState);
-        prgStateList.addFirst(prgState);
+        prgStateList.add(prgState);
     }
 
     @Override

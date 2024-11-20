@@ -1,6 +1,5 @@
 package model.adt;
 
-import exceptions.ADTException;
 import exceptions.IndexOutOfBoundsException;
 
 import java.util.ArrayList;

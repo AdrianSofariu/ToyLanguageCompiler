@@ -23,7 +23,7 @@ public class OpenRFileStatement implements IStatement{
     @Override
     public PrgState execute(PrgState state) throws StatementException {
 
-        IValue result = exp.eval(state.getSymTable());
+        IValue result = exp.eval(state.getSymTable(), state.getHeap());
 
         //check if the expression evaluates to a string
         if(!result.getType().equals(new StringType())){
@@ -56,6 +56,6 @@ public class OpenRFileStatement implements IStatement{
     }
 
     public String toString(){
-        return "openRFile(" + exp.toString() + ")";
+        return "openRFile(" + exp + ")";
     }
 }

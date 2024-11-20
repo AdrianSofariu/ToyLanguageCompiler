@@ -27,7 +27,7 @@ public class AssignStatement implements IStatement {
         IValue value = state.getSymTable().get(variableName);
 
         //evaluate the new value
-        IValue expValue = expression.eval(state.getSymTable());
+        IValue expValue = expression.eval(state.getSymTable(), state.getHeap());
 
         //check if the types of the 2 values are compatible
         if(!value.getType().equals(expValue.getType())){
@@ -45,6 +45,6 @@ public class AssignStatement implements IStatement {
     }
 
     public String toString() {
-        return variableName + " = " + expression.toString();
+        return variableName + " = " + expression;
     }
 }

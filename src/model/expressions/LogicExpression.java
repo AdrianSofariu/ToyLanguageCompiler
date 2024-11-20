@@ -3,6 +3,7 @@ package model.expressions;
 import exceptions.ADTException;
 import exceptions.ExpressionException;
 import model.adt.MyIDictionary;
+import model.adt.MyIHeap;
 import model.types.BoolType;
 import model.values.BoolValue;
 import model.values.IValue;
@@ -21,11 +22,11 @@ public class LogicExpression implements IExpression {
 
 
     @Override
-    public IValue eval(MyIDictionary<String, IValue> symTable) throws ADTException, ExpressionException {
+    public IValue eval(MyIDictionary<String, IValue> symTable, MyIHeap heap) throws ADTException, ExpressionException {
 
         //evaluate both sides of the expression
-        IValue evaluatedLeft = left.eval(symTable);
-        IValue evaluatedRight = right.eval(symTable);
+        IValue evaluatedLeft = left.eval(symTable, heap);
+        IValue evaluatedRight = right.eval(symTable, heap);
 
         //check for both sides to be boolean
         if(!evaluatedLeft.getType().equals(new BoolType())){
@@ -52,6 +53,6 @@ public class LogicExpression implements IExpression {
     }
 
     public String toString(){
-        return left.toString() + " " + operator + " " + right.toString();
+        return left + " " + operator + " " + right;
     }
 }

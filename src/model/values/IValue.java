@@ -5,4 +5,5 @@ import model.types.IType;
 public interface IValue {
 
     IType getType();
+    String toString();
 }

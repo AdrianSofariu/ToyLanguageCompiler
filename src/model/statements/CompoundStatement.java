@@ -27,6 +27,6 @@ public class CompoundStatement implements IStatement {
     }
 
     public String toString(){
-        return statement1.toString() + ";" + statement2.toString();
+        return statement1 + ";" + statement2;
     }
 }

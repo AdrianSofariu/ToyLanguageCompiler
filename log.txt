@@ -1,0 +1,721 @@
+-------Program State-------
+Symbol Table:
+
+Execution Stack:
+Ref(int) v;new(v, 20);Ref(Ref(int)) a;new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+
+Execution Stack:
+Ref(int) v
+new(v, 20);Ref(Ref(int)) a;new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+
+Execution Stack:
+Ref(int) v
+new(v, 20);Ref(Ref(int)) a;new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+v -> (0, int)
+
+Execution Stack:
+new(v, 20);Ref(Ref(int)) a;new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+v -> (0, int)
+
+Execution Stack:
+new(v, 20);Ref(Ref(int)) a;new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+v -> (0, int)
+
+Execution Stack:
+new(v, 20)
+Ref(Ref(int)) a;new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+v -> (0, int)
+
+Execution Stack:
+new(v, 20)
+Ref(Ref(int)) a;new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+v -> (1, int)
+
+Execution Stack:
+Ref(Ref(int)) a;new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+1 -> 20
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+v -> (1, int)
+
+Execution Stack:
+Ref(Ref(int)) a;new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+1 -> 20
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+v -> (1, int)
+
+Execution Stack:
+Ref(Ref(int)) a
+new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+1 -> 20
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+v -> (1, int)
+
+Execution Stack:
+Ref(Ref(int)) a
+new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+1 -> 20
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (0, Ref(int))
+v -> (1, int)
+
+Execution Stack:
+new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+1 -> 20
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (0, Ref(int))
+v -> (1, int)
+
+Execution Stack:
+new(v, 30);new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+1 -> 20
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (0, Ref(int))
+v -> (1, int)
+
+Execution Stack:
+new(v, 30)
+new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+1 -> 20
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (0, Ref(int))
+v -> (1, int)
+
+Execution Stack:
+new(v, 30)
+new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+1 -> 20
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (0, Ref(int))
+v -> (2, int)
+
+Execution Stack:
+new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+1 -> 20
+2 -> 30
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (0, Ref(int))
+v -> (2, int)
+
+Execution Stack:
+new(a, v);new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (0, Ref(int))
+v -> (2, int)
+
+Execution Stack:
+new(a, v)
+new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (0, Ref(int))
+v -> (2, int)
+
+Execution Stack:
+new(a, v)
+new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+v -> (2, int)
+
+Execution Stack:
+new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+v -> (2, int)
+
+Execution Stack:
+new(v, 40);Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+v -> (2, int)
+
+Execution Stack:
+new(v, 40)
+Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+v -> (2, int)
+
+Execution Stack:
+new(v, 40)
+Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+v -> (4, int)
+
+Execution Stack:
+Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+v -> (4, int)
+
+Execution Stack:
+Ref(Ref(Ref(int))) b;new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+v -> (4, int)
+
+Execution Stack:
+Ref(Ref(Ref(int))) b
+new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+v -> (4, int)
+
+Execution Stack:
+Ref(Ref(Ref(int))) b
+new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+b -> (0, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+b -> (0, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+new(b, a);new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+b -> (0, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+new(b, a)
+new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+b -> (0, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+new(b, a)
+new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+b -> (5, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+5 -> (3, Ref(int))
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+b -> (5, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+new(a, v);print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+5 -> (3, Ref(int))
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+b -> (5, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+new(a, v)
+print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+5 -> (3, Ref(int))
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (3, Ref(int))
+b -> (5, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+new(a, v)
+print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+5 -> (3, Ref(int))
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (6, Ref(int))
+b -> (5, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+5 -> (3, Ref(int))
+6 -> (4, int)
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (6, Ref(int))
+b -> (5, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+print(rH(rH(a)))
+
+Output List:
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+5 -> (3, Ref(int))
+6 -> (4, int)
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (6, Ref(int))
+b -> (5, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+
+Output List:
+40
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+5 -> (3, Ref(int))
+6 -> (4, int)
+
+---------------------------
+
+-------Program State-------
+Symbol Table:
+a -> (6, Ref(int))
+b -> (5, Ref(Ref(int)))
+v -> (4, int)
+
+Execution Stack:
+
+Output List:
+40
+
+File Table:
+
+Heap:
+2 -> 30
+3 -> (2, int)
+4 -> 40
+5 -> (3, Ref(int))
+6 -> (4, int)
+
+---------------------------
+

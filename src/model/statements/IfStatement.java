@@ -24,7 +24,7 @@ public class IfStatement implements IStatement {
     public PrgState execute(PrgState state) throws StatementException {
 
         //evaluate the condition
-        IValue result = expression.eval(state.getSymTable());
+        IValue result = expression.eval(state.getSymTable(), state.getHeap());
 
         //check if it is a boolean
         if(!result.getType().equals(new BoolType())){
@@ -48,6 +48,6 @@ public class IfStatement implements IStatement {
     }
 
     public String toString(){
-        return "if (" + expression.toString() + "){ " + statementThen.toString() + "} else { " + statementElse.toString() + "}";
+        return "if (" + expression + "){ " + statementThen + "} else { " + statementElse + "}";
     }
 }
