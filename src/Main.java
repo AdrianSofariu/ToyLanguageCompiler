@@ -103,7 +103,7 @@ public class Main {
                                                 new PrintStatement(new ReadHeapExpression(new ReadHeapExpression(new VariableExpression("a")))))))));
 
         //generate a different example to test the garbage collector
-        //Ref int v;new(v,20);Ref Ref int a; new(v,30);new(a,v);new(v,40);Ref Ref Ref int b; new(b,a); new(a,v); print(rH(rH(a)))
+        //Ref int v;new(v,20);Ref Ref int a; new(v,30);new(a,v);new(v,40);Ref Ref Ref int b; new(b,a); new(a,v); new(b,a); print(rH(rH(a)))
         IStatement ex11 = new CompoundStatement(new VarDecStatement("v", new RefType(new IntType())),
                 new CompoundStatement(new HeapAllocStatement("v", new ValueExpression(new IntValue(20))),
                         new CompoundStatement(new VarDecStatement("a", new RefType(new RefType(new IntType()))),
@@ -113,8 +113,8 @@ public class Main {
                                                         new CompoundStatement(new VarDecStatement("b", new RefType(new RefType(new RefType(new IntType())))),
                                                                 new CompoundStatement(new HeapAllocStatement("b", new VariableExpression("a")),
                                                                         new CompoundStatement(new HeapAllocStatement("a", new VariableExpression("v")),
-                                                                                new PrintStatement(new ReadHeapExpression(new ReadHeapExpression(new VariableExpression("a")))))))))))));
-
+                                                                                new CompoundStatement(new HeapAllocStatement("b", new VariableExpression("a")),
+                                                                                        new PrintStatement(new ReadHeapExpression(new ReadHeapExpression(new VariableExpression("a"))))))))))))));
 
 
 

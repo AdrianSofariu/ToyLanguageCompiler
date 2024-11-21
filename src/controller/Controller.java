@@ -106,32 +106,24 @@ public class Controller {
     }
 
     //given a list of addresses, return a list of all other addresses that are indirectly referenced by the given addresses
-    //do it using streams
-    List<Integer> getIndirectlyReferencedAddresses(List<Integer> addresses, Map<Integer, IValue> heap){
-        List<Integer> indirectlyReferencedAddresses = new ArrayList<>();
+    List<Integer> getIndirectlyReferencedAddresses(List<Integer> symTableAddr, Map<Integer, IValue>heap){
 
-        //go through all pairs in the heap
-        heap.forEach((k, v) -> {
+        List<Integer> indirectlyRefAddr = new ArrayList<>();
 
-            //recursively collect all addresses that are indirectly referenced
-            //until we reach an address that is in the list of addresses
-            //or we reach an address that is not a reference value
-            List<Integer> addressesToCheck = new ArrayList<>();
-            IValue val = v;
-            Integer key = k;
-            while (val instanceof RefValue && !addresses.contains(((RefValue) val).getAddr())) {
-                key = ((RefValue) val).getAddr();
-                addressesToCheck.add(key);
-                val = heap.get(key);
-            }
-
-            //if we reached an address that is in the list of addresses, add all the addresses we checked to the list
-            if (addresses.contains(k)) {
-                indirectlyReferencedAddresses.addAll(addressesToCheck);
+        //go through all addresses in the sym table
+        //for each of them with a RefValue as value go recursively
+        //to the referenced addresses until the value is not a ref
+        //add all these addresses to the list
+        symTableAddr.forEach(addr -> {
+            IValue val = heap.get(addr);
+            while(val instanceof RefValue refVal){
+                int refAddr = refVal.getAddr();
+                if(!indirectlyRefAddr.contains(refAddr)){
+                    indirectlyRefAddr.add(refAddr);
+                }
+                val = heap.get(refAddr);
             }
         });
-
-        return indirectlyReferencedAddresses;
+        return indirectlyRefAddr;
     }
-
 }
