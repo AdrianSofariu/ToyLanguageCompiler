@@ -1,5 +1,8 @@
 package model.statements;
 
+import exceptions.ADTException;
+import exceptions.ExpressionException;
+import exceptions.KeyNotFoundException;
 import exceptions.StatementException;
 import model.expressions.IExpression;
 import model.state.PrgState;
@@ -19,7 +22,7 @@ public class CloseRFileStatement implements IStatement{
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StatementException {
+    public PrgState execute(PrgState state) throws StatementException, ExpressionException, ADTException {
 
         IValue result = exp.eval(state.getSymTable(), state.getHeap());
 
@@ -38,8 +41,8 @@ public class CloseRFileStatement implements IStatement{
             BufferedReader reader = state.getFileTable().get((StringValue) result);
             reader.close();
         }
-        catch (IOException e){
-            throw new StatementException("Error closing file");
+        catch (IOException | KeyNotFoundException e){
+            throw new StatementException(e.getMessage());
         }
 
         //remove the file from the file table

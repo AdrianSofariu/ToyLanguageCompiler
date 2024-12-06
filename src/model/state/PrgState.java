@@ -12,6 +12,8 @@ import java.io.BufferedReader;
 
 public class PrgState {
 
+    private static int lastIndex;
+    private int id;
     private MyIList<String> outputList;
     private MyIDictionary<String, IValue> symTable;
     private MyIDictionary<StringValue, BufferedReader> fileTable;
@@ -19,6 +21,9 @@ public class PrgState {
     private IStatement initialState;
     private MyIHeap heap;
 
+    private static synchronized int getNextId() {
+        return lastIndex++;
+    }
 
     public PrgState(MyIList<String> outputList, MyIDictionary<String, IValue> symTable, MyIDictionary<StringValue, BufferedReader> fileTable, MyIStack<IStatement> execStack, MyIHeap heap, IStatement initialState) {
         this.outputList = outputList;
@@ -92,5 +97,9 @@ public class PrgState {
                 "\nHeap:\n" + heap;
         output += "\n---------------------------\n";
         return output;
+    }
+
+    public boolean notCompleted(){
+        return !execStack.isEmpty();
     }
 }

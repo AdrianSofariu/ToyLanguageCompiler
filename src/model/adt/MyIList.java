@@ -6,5 +6,5 @@ public interface MyIList<T> {
 
     void add(T element);
     List<T> getAll();
-    T get(int index) throws IndexOutOfBoundsException;
+    T get(int index) throws exceptions.IndexOutOfBoundsException;
 }

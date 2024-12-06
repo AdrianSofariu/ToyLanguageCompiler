@@ -1,5 +1,6 @@
 package model.statements;
 
+import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.StatementException;
 import model.expressions.IExpression;
@@ -16,7 +17,7 @@ public class AssignStatement implements IStatement {
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StatementException, ExpressionException {
+    public PrgState execute(PrgState state) throws StatementException, ExpressionException, ADTException {
 
         //check if the variable already exists in the symbol table
         if(!state.getSymTable().contains(variableName)){

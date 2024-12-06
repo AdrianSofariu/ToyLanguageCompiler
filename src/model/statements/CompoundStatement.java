@@ -1,5 +1,7 @@
 package model.statements;
 
+import exceptions.ADTException;
+import exceptions.ExpressionException;
 import exceptions.StatementException;
 import model.state.PrgState;
 
@@ -14,7 +16,7 @@ public class CompoundStatement implements IStatement {
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StatementException {
+    public PrgState execute(PrgState state) throws StatementException, ExpressionException, ADTException {
         //split the statement into its components and push them on the stack
         state.getExecStack().push(statement2);
         state.getExecStack().push(statement1);

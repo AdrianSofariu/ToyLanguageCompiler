@@ -1,5 +1,8 @@
 package model.statements;
 
+import exceptions.ADTException;
+import exceptions.ExpressionException;
+import exceptions.HeapException;
 import exceptions.StatementException;
 import model.expressions.IExpression;
 import model.state.PrgState;
@@ -18,7 +21,7 @@ public class WriteHeapStatement implements IStatement{
 
 
     @Override
-    public PrgState execute(PrgState state) throws StatementException {
+    public PrgState execute(PrgState state) throws StatementException, ExpressionException, ADTException, HeapException {
 
         //check if the variable is in the symbol table
         if(!state.getSymTable().contains(var)){

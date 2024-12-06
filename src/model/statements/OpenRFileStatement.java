@@ -1,5 +1,7 @@
 package model.statements;
 
+import exceptions.ADTException;
+import exceptions.ExpressionException;
 import exceptions.StatementException;
 import model.expressions.IExpression;
 import model.state.PrgState;
@@ -21,7 +23,7 @@ public class OpenRFileStatement implements IStatement{
 
 
     @Override
-    public PrgState execute(PrgState state) throws StatementException {
+    public PrgState execute(PrgState state) throws StatementException, ExpressionException, ADTException {
 
         IValue result = exp.eval(state.getSymTable(), state.getHeap());
 

@@ -1,5 +1,6 @@
 package model.expressions;
 
+import exceptions.ADTException;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
 import model.values.IValue;
@@ -12,7 +13,7 @@ public class VariableExpression implements IExpression {
     }
 
     @Override
-    public IValue eval(MyIDictionary<String, IValue> symTable, MyIHeap heap){
+    public IValue eval(MyIDictionary<String, IValue> symTable, MyIHeap heap) throws ADTException {
         return symTable.get(var);
     }
 

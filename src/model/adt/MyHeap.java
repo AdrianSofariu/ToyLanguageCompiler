@@ -23,9 +23,10 @@ public class MyHeap implements MyIHeap{
     }
 
     @Override
-    public IValue getValue(int address) {
-        if(map.containsKey(address))
-            return map.get(address);
+    public IValue getValue(int address) throws HeapException{
+        IValue res;
+        if((res = map.get(address)) != null)
+            return res;
         else
             throw new HeapException("Address not found");
     }
@@ -36,7 +37,7 @@ public class MyHeap implements MyIHeap{
     }
 
     @Override
-    public void set(int address, IValue value) {
+    public void set(int address, IValue value) throws HeapException {
         if(map.containsKey(address))
             map.put(address, value);
         else

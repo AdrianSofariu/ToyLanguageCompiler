@@ -1,5 +1,7 @@
 package model.statements;
 
+import exceptions.ADTException;
+import exceptions.ExpressionException;
 import exceptions.StatementException;
 import model.expressions.VariableExpression;
 import model.state.PrgState;
@@ -18,7 +20,7 @@ public class VarDecStatement implements IStatement{
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StatementException {
+    public PrgState execute(PrgState state) throws StatementException, ExpressionException, ADTException {
         state.getSymTable().insert(variableName, typ.defaultValue());
         return state;
     }

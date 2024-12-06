@@ -1,29 +1,23 @@
 package controller;
 
-import exceptions.ADTException;
-import exceptions.EmptyStackException;
-import exceptions.ExpressionException;
-import exceptions.StatementException;
+import exceptions.*;
 import model.adt.MyIStack;
+import model.garbageCollector.GarbageCollector;
+import model.garbageCollector.IGarbageCollector;
 import model.state.PrgState;
 import model.statements.IStatement;
-import model.values.IValue;
-import model.values.RefValue;
 import repository.IRepository;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Controller {
 
     IRepository repo;
     boolean displayFlag = true;
+    IGarbageCollector garbageCollector;
 
     public Controller(IRepository repo){
         this.repo = repo;
+        this.garbageCollector = new GarbageCollector();
     }
 
     public void setDisplayFlag(){
@@ -34,7 +28,7 @@ public class Controller {
         repo.addPrgState(prg);
     }
 
-    public PrgState oneStep(PrgState state) throws StatementException, ExpressionException, ADTException {
+    public PrgState oneStep(PrgState state) throws StatementException, ExpressionException, ADTException, HeapException {
         //get execution stack
         MyIStack<IStatement> st = state.getExecStack();
 
@@ -54,7 +48,7 @@ public class Controller {
         return executedState;
     }
 
-    public PrgState allStep() throws StatementException, ExpressionException, ADTException {
+    public PrgState allStep() throws StatementException, ExpressionException, ADTException, RepositoryException, HeapException {
 
         //get the current program
         PrgState prg = repo.getCurrentProgram();
@@ -72,14 +66,8 @@ public class Controller {
         while(!prg.getExecStack().isEmpty()){
             oneStep(prg);
             repo.logPrgStateExec();
-            List<Integer> symTableAddresses = getAddrFromSymTable(prg.getSymTable().getMap().values());
-            List<Integer> indirectRefAddr = getIndirectlyReferencedAddresses(
-                symTableAddresses,
-                prg.getHeap().getContent()
-            );
-            prg.getHeap().setContent(garbageCollector(
-                symTableAddresses,
-                indirectRefAddr,
+            prg.getHeap().setContent(garbageCollector.collect(
+                prg.getSymTable().getMap().values(),
                 prg.getHeap().getContent()
             ));
             repo.logPrgStateExec();
@@ -90,7 +78,7 @@ public class Controller {
     }
 
     //eliminate all addresses from the heap that are not referenced by other heap entries or by the symbol table
-    Map<Integer, IValue> garbageCollector(List<Integer> symTableAddresses, List<Integer> indirectRefAddr, Map<Integer, IValue> heap){
+   /* Map<Integer, IValue> garbageCollector(List<Integer> symTableAddresses, List<Integer> indirectRefAddr, Map<Integer, IValue> heap){
         return heap.entrySet().stream()
             .filter(e -> symTableAddresses.contains(e.getKey()) || indirectRefAddr.contains(e.getKey()))
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -125,5 +113,5 @@ public class Controller {
             }
         });
         return indirectlyRefAddr;
-    }
+    }*/
 }

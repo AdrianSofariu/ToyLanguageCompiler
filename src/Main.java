@@ -117,25 +117,32 @@ public class Main {
                                                                                         new PrintStatement(new ReadHeapExpression(new ReadHeapExpression(new VariableExpression("a"))))))))))))));
 
 
-
-
+        //ex10
         IRepository repo = new MyRepository("log.txt");
         repo.addPrgState(new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(),new MyHeap(), ex10));
         Controller ctrl = new Controller(repo);
 
+        //ex11
         IRepository repo2 = new MyRepository("log.txt");
         repo2.addPrgState(new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), new MyHeap(), ex11));
         Controller ctrl2 = new Controller(repo2);
 
+        //ex8
         IRepository repo3 = new MyRepository("log.txt");
         repo3.addPrgState(new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), new MyHeap(), ex8));
         Controller ctrl3 = new Controller(repo3);
 
+        //ex9
+        IRepository repo4 = new MyRepository("log.txt");
+        repo4.addPrgState(new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), new MyHeap(), ex9));
+        Controller ctrl4 = new Controller(repo4);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
-        menu.addCommand(new RunExampleCommand("1", "run example 6", ctrl));
-        menu.addCommand(new RunExampleCommand("2", "run example 2.2", ctrl2));
-        menu.addCommand(new RunExampleCommand("3", "run example 1.3", ctrl3));
+        menu.addCommand(new RunExampleCommand("1", "run example garbageCol1", ctrl));
+        menu.addCommand(new RunExampleCommand("2", "run example garbageCol2", ctrl2));
+        menu.addCommand(new RunExampleCommand("3", "run example rH/wH", ctrl3));
+        menu.addCommand(new RunExampleCommand("4", "run example while", ctrl4));
 
         menu.show();
 
