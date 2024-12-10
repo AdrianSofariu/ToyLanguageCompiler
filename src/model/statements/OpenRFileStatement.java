@@ -49,7 +49,7 @@ public class OpenRFileStatement implements IStatement{
             throw new StatementException("File not found");
         }
 
-        return state;
+        return null;
     }
 
     @Override

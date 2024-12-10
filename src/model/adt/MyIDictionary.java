@@ -13,4 +13,5 @@ public interface MyIDictionary<K, V> {
     V get(K key) throws KeyNotFoundException;
     Set<K> getKeys();
     Map<K, V> getMap();
+    MyIDictionary<K, V> deepCopy();
 }

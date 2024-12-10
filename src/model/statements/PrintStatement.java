@@ -23,7 +23,7 @@ public class PrintStatement implements IStatement {
 
         //add it as a string to the output list
         state.getOutputList().add(result.toString());
-        return state;
+        return null;
     }
 
     @Override

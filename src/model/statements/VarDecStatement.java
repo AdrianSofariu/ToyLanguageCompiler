@@ -22,7 +22,7 @@ public class VarDecStatement implements IStatement{
     @Override
     public PrgState execute(PrgState state) throws StatementException, ExpressionException, ADTException {
         state.getSymTable().insert(variableName, typ.defaultValue());
-        return state;
+        return null;
     }
 
     @Override

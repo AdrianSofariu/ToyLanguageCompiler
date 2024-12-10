@@ -51,7 +51,7 @@ public class WriteHeapStatement implements IStatement{
         //update the value in the heap
         state.getHeap().set(address, expValue);
 
-        return state;
+        return null;
     }
 
     @Override

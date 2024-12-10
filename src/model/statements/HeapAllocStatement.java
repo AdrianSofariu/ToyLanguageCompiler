@@ -41,7 +41,7 @@ public class HeapAllocStatement implements IStatement{
         int addr = state.getHeap().allocate(expValue);
         state.getSymTable().insert(var, new RefValue(addr, ((RefValue) varValue).getLocationType()));
 
-        return state;
+        return null;
     }
 
     public String toString(){

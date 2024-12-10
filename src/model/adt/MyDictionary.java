@@ -13,6 +13,10 @@ public class MyDictionary<K,V> implements MyIDictionary<K,V>{
     public MyDictionary() {
         map = new HashMap<>();
     }
+
+    public MyDictionary(Map<K,V> map) {
+        this.map = new HashMap<>(map);
+    }
     
     @Override
     public void insert(K key, V value) {
@@ -48,6 +52,11 @@ public class MyDictionary<K,V> implements MyIDictionary<K,V>{
     @Override
     public Map<K, V> getMap() {
         return map;
+    }
+
+    @Override
+    public MyIDictionary<K, V> deepCopy() {
+        return new MyDictionary<K, V>(map);
     }
 
     public String toString() {

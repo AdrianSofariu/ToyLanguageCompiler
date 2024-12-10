@@ -1,8 +1,8 @@
--------Program State-------
+-------Program State 0-------
 Symbol Table:
 
 Execution Stack:
-Ref(int) v;new(v, 20);Ref(Ref(int)) a;new(a, v);new(v, 30);print(rH(rH(a)))
+Ref(int) a;new(a, 20);fork(wH(a, 30);print(rH(a)));print(rH(a))
 
 Output List:
 
@@ -12,12 +12,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
 
 Execution Stack:
-Ref(int) v
-new(v, 20);Ref(Ref(int)) a;new(a, v);new(v, 30);print(rH(rH(a)))
+Ref(int) a
+new(a, 20);fork(wH(a, 30);print(rH(a)));print(rH(a))
 
 Output List:
 
@@ -27,12 +27,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
 
 Execution Stack:
-Ref(int) v
-new(v, 20);Ref(Ref(int)) a;new(a, v);new(v, 30);print(rH(rH(a)))
+Ref(int) a
+new(a, 20);fork(wH(a, 30);print(rH(a)));print(rH(a))
 
 Output List:
 
@@ -42,12 +42,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-v -> (0, int)
+a -> (0, int)
 
 Execution Stack:
-new(v, 20);Ref(Ref(int)) a;new(a, v);new(v, 30);print(rH(rH(a)))
+new(a, 20);fork(wH(a, 30);print(rH(a)));print(rH(a))
 
 Output List:
 
@@ -57,12 +57,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-v -> (0, int)
+a -> (0, int)
 
 Execution Stack:
-new(v, 20);Ref(Ref(int)) a;new(a, v);new(v, 30);print(rH(rH(a)))
+new(a, 20);fork(wH(a, 30);print(rH(a)));print(rH(a))
 
 Output List:
 
@@ -72,13 +72,13 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-v -> (0, int)
+a -> (0, int)
 
 Execution Stack:
-new(v, 20)
-Ref(Ref(int)) a;new(a, v);new(v, 30);print(rH(rH(a)))
+new(a, 20)
+fork(wH(a, 30);print(rH(a)));print(rH(a))
 
 Output List:
 
@@ -88,13 +88,13 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-v -> (0, int)
+a -> (0, int)
 
 Execution Stack:
-new(v, 20)
-Ref(Ref(int)) a;new(a, v);new(v, 30);print(rH(rH(a)))
+new(a, 20)
+fork(wH(a, 30);print(rH(a)));print(rH(a))
 
 Output List:
 
@@ -104,28 +104,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-v -> (1, int)
+a -> (1, int)
 
 Execution Stack:
-Ref(Ref(int)) a;new(a, v);new(v, 30);print(rH(rH(a)))
-
-Output List:
-
-File Table:
-
-Heap:
-1 -> 20
-
----------------------------
-
--------Program State-------
-Symbol Table:
-v -> (1, int)
-
-Execution Stack:
-Ref(Ref(int)) a;new(a, v);new(v, 30);print(rH(rH(a)))
+fork(wH(a, 30);print(rH(a)));print(rH(a))
 
 Output List:
 
@@ -136,13 +120,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-v -> (1, int)
+a -> (1, int)
 
 Execution Stack:
-Ref(Ref(int)) a
-new(a, v);new(v, 30);print(rH(rH(a)))
+fork(wH(a, 30);print(rH(a)));print(rH(a))
 
 Output List:
 
@@ -153,13 +136,13 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-v -> (1, int)
+a -> (1, int)
 
 Execution Stack:
-Ref(Ref(int)) a
-new(a, v);new(v, 30);print(rH(rH(a)))
+fork(wH(a, 30);print(rH(a)))
+print(rH(a))
 
 Output List:
 
@@ -170,13 +153,13 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-a -> (0, Ref(int))
-v -> (1, int)
+a -> (1, int)
 
 Execution Stack:
-new(a, v);new(v, 30);print(rH(rH(a)))
+fork(wH(a, 30);print(rH(a)))
+print(rH(a))
 
 Output List:
 
@@ -187,13 +170,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-a -> (0, Ref(int))
-v -> (1, int)
+a -> (1, int)
 
 Execution Stack:
-new(a, v);new(v, 30);print(rH(rH(a)))
+print(rH(a))
 
 Output List:
 
@@ -204,14 +186,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 1-------
 Symbol Table:
-a -> (0, Ref(int))
-v -> (1, int)
+a -> (1, int)
 
 Execution Stack:
-new(a, v)
-new(v, 30);print(rH(rH(a)))
+wH(a, 30);print(rH(a))
 
 Output List:
 
@@ -222,14 +202,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-a -> (0, Ref(int))
-v -> (1, int)
+a -> (1, int)
 
 Execution Stack:
-new(a, v)
-new(v, 30);print(rH(rH(a)))
+print(rH(a))
 
 Output List:
 
@@ -240,13 +218,12 @@ Heap:
 
 ---------------------------
 
--------Program State-------
+-------Program State 1-------
 Symbol Table:
-a -> (2, Ref(int))
-v -> (1, int)
+a -> (1, int)
 
 Execution Stack:
-new(v, 30);print(rH(rH(a)))
+wH(a, 30);print(rH(a))
 
 Output List:
 
@@ -254,108 +231,12 @@ File Table:
 
 Heap:
 1 -> 20
-2 -> (1, int)
 
 ---------------------------
 
--------Program State-------
+-------Program State 0-------
 Symbol Table:
-a -> (2, Ref(int))
-v -> (1, int)
-
-Execution Stack:
-new(v, 30);print(rH(rH(a)))
-
-Output List:
-
-File Table:
-
-Heap:
-1 -> 20
-2 -> (1, int)
-
----------------------------
-
--------Program State-------
-Symbol Table:
-a -> (2, Ref(int))
-v -> (1, int)
-
-Execution Stack:
-new(v, 30)
-print(rH(rH(a)))
-
-Output List:
-
-File Table:
-
-Heap:
-1 -> 20
-2 -> (1, int)
-
----------------------------
-
--------Program State-------
-Symbol Table:
-a -> (2, Ref(int))
-v -> (1, int)
-
-Execution Stack:
-new(v, 30)
-print(rH(rH(a)))
-
-Output List:
-
-File Table:
-
-Heap:
-1 -> 20
-2 -> (1, int)
-
----------------------------
-
--------Program State-------
-Symbol Table:
-a -> (2, Ref(int))
-v -> (3, int)
-
-Execution Stack:
-print(rH(rH(a)))
-
-Output List:
-
-File Table:
-
-Heap:
-1 -> 20
-2 -> (1, int)
-3 -> 30
-
----------------------------
-
--------Program State-------
-Symbol Table:
-a -> (2, Ref(int))
-v -> (3, int)
-
-Execution Stack:
-print(rH(rH(a)))
-
-Output List:
-
-File Table:
-
-Heap:
-1 -> 20
-2 -> (1, int)
-3 -> 30
-
----------------------------
-
--------Program State-------
-Symbol Table:
-a -> (2, Ref(int))
-v -> (3, int)
+a -> (1, int)
 
 Execution Stack:
 
@@ -366,17 +247,16 @@ File Table:
 
 Heap:
 1 -> 20
-2 -> (1, int)
-3 -> 30
 
 ---------------------------
 
--------Program State-------
+-------Program State 1-------
 Symbol Table:
-a -> (2, Ref(int))
-v -> (3, int)
+a -> (1, int)
 
 Execution Stack:
+wH(a, 30)
+print(rH(a))
 
 Output List:
 20
@@ -385,8 +265,75 @@ File Table:
 
 Heap:
 1 -> 20
-2 -> (1, int)
-3 -> 30
+
+---------------------------
+
+-------Program State 1-------
+Symbol Table:
+a -> (1, int)
+
+Execution Stack:
+wH(a, 30)
+print(rH(a))
+
+Output List:
+20
+
+File Table:
+
+Heap:
+1 -> 20
+
+---------------------------
+
+-------Program State 1-------
+Symbol Table:
+a -> (1, int)
+
+Execution Stack:
+print(rH(a))
+
+Output List:
+20
+
+File Table:
+
+Heap:
+1 -> 30
+
+---------------------------
+
+-------Program State 1-------
+Symbol Table:
+a -> (1, int)
+
+Execution Stack:
+print(rH(a))
+
+Output List:
+20
+
+File Table:
+
+Heap:
+1 -> 30
+
+---------------------------
+
+-------Program State 1-------
+Symbol Table:
+a -> (1, int)
+
+Execution Stack:
+
+Output List:
+20
+30
+
+File Table:
+
+Heap:
+1 -> 30
 
 ---------------------------
 

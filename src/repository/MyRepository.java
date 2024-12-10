@@ -1,8 +1,10 @@
 package repository;
 
 import exceptions.RepositoryException;
+import model.adt.MyIDictionary;
 import model.adt.MyList;
 import model.state.PrgState;
+import model.values.IValue;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -30,20 +32,21 @@ public class MyRepository implements IRepository{
     }
 
     @Override
+    public void setPrgList(List<PrgState> prgList) {
+        this.prgStateList = prgList;
+    }
+
+    @Override
     public void addPrgState(PrgState prgState) {
         prgStateList.add(prgState);
     }
 
-    @Override
-    public PrgState getCurrentProgram() {
-        return prgStateList.get(currentIndex);
-    }
 
     @Override
-    public void logPrgStateExec() throws RepositoryException {
+    public void logPrgStateExec(PrgState state) throws RepositoryException {
         try{
             PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(filename, true)));
-            logFile.println(getCurrentProgram());
+            logFile.println(state);
             logFile.close();
         }
         catch (IOException e){
@@ -60,6 +63,15 @@ public class MyRepository implements IRepository{
         catch (IOException e){
             throw new RepositoryException("Could not open log file");
         }
+    }
+
+    //return a list of all symTables
+    public List<MyIDictionary<String, IValue>> symTables(){
+        List<MyIDictionary<String, IValue>> symTables = new ArrayList<>();
+        for(PrgState prg : prgStateList){
+            symTables.add(prg.getSymTable());
+        }
+        return symTables;
     }
 
 }

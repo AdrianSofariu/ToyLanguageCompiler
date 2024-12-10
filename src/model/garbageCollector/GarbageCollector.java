@@ -1,5 +1,7 @@
 package model.garbageCollector;
 
+import model.adt.MyDictionary;
+import model.adt.MyIDictionary;
 import model.values.IValue;
 import model.values.RefValue;
 
@@ -12,13 +14,23 @@ public class GarbageCollector implements IGarbageCollector{
     }
 
     //eliminate all addresses from the heap that are not referenced by other heap entries or by the symbol table
-    public Map<Integer, IValue> collect(Collection<IValue> symTableValues, Map<Integer, IValue> heap){
+    public Map<Integer, IValue> collect(List<MyIDictionary<String, IValue>> symTables, Map<Integer, IValue> heap){
 
+        Collection<IValue> symTableValues = symTableKeys(symTables);
         List<Integer> symTableAddresses = getAddrFromSymTable(symTableValues);
         List<Integer> indirectRefAddr = getIndirectlyReferencedAddresses(symTableAddresses, heap);
         return heap.entrySet().stream()
                 .filter(e -> symTableAddresses.contains(e.getKey()) || indirectRefAddr.contains(e.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    //extract all values from the symbol tables
+    private Collection<IValue> symTableKeys(List<MyIDictionary<String, IValue>> symTables){
+        return symTables.stream()
+                .map(MyIDictionary::getMap)
+                .map(Map::values)
+                .flatMap(Collection::stream)
+                .toList();
     }
 
     //get all addresses from reference values in the symbol table

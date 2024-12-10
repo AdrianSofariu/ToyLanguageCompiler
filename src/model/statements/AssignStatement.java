@@ -37,7 +37,7 @@ public class AssignStatement implements IStatement {
 
         //update the variable in the symbol table
         state.getSymTable().insert(variableName, expValue);
-        return state;
+        return null;
     }
 
     @Override

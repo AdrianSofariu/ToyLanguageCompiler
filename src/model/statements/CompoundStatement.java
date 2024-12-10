@@ -20,7 +20,7 @@ public class CompoundStatement implements IStatement {
         //split the statement into its components and push them on the stack
         state.getExecStack().push(statement2);
         state.getExecStack().push(statement1);
-        return state;
+        return null;
     }
 
     @Override

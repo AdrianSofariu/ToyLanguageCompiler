@@ -16,7 +16,7 @@ public class RunExampleCommand extends Command{
     public void execute(){
         try{
             controller.allStep();
-        } catch (StatementException | ExpressionException | ADTException | RepositoryException | HeapException e){
+        } catch (ControllerException e){
             System.out.println(e.getMessage());
         }
     }

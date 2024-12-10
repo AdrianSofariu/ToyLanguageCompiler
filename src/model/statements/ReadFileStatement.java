@@ -56,7 +56,7 @@ public class ReadFileStatement implements IStatement {
             throw new StatementException("Error reading from file");
         }
 
-        return state;
+        return null;
     }
 
     @Override

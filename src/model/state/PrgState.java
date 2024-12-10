@@ -1,5 +1,6 @@
 package model.state;
 
+import exceptions.*;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
 import model.adt.MyIList;
@@ -12,7 +13,7 @@ import java.io.BufferedReader;
 
 public class PrgState {
 
-    private static int lastIndex;
+    private static int lastIndex = 0;
     private int id;
     private MyIList<String> outputList;
     private MyIDictionary<String, IValue> symTable;
@@ -26,6 +27,7 @@ public class PrgState {
     }
 
     public PrgState(MyIList<String> outputList, MyIDictionary<String, IValue> symTable, MyIDictionary<StringValue, BufferedReader> fileTable, MyIStack<IStatement> execStack, MyIHeap heap, IStatement initialState) {
+        this.id = getNextId();
         this.outputList = outputList;
         this.symTable = symTable;
         this.execStack = execStack;
@@ -90,7 +92,7 @@ public class PrgState {
 
     @Override
     public String toString() {
-        String output = "-------Program State-------\n";
+        String output = "-------Program State " + id + "-------\n";
         output += "Symbol Table:\n" + symTable +
                 "\nExecution Stack:\n" + execStack+
                 "\nOutput List:\n" + outputList + "\n" + FileTableToString() +
@@ -101,5 +103,12 @@ public class PrgState {
 
     public boolean notCompleted(){
         return !execStack.isEmpty();
+    }
+
+    public PrgState oneStep() throws StatementException, ExpressionException, ADTException, HeapException{
+        if(execStack.isEmpty())
+            throw new EmptyStackException("Execution stack is empty");
+        IStatement currentStatement = execStack.pop();
+        return currentStatement.execute(this);
     }
 }
