@@ -4,8 +4,10 @@ import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.HeapException;
 import exceptions.StatementException;
+import model.adt.MyIDictionary;
 import model.adt.MyStack;
 import model.state.PrgState;
+import model.types.IType;
 
 import java.beans.Statement;
 
@@ -26,6 +28,12 @@ public class ForkStatement implements IStatement{
     @Override
     public IStatement deepCopy() {
         return new ForkStatement(statement.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws StatementException, ADTException, ExpressionException {
+        statement.typeCheck(typeEnv.deepCopy());
+        return typeEnv;
     }
 
     public String toString(){

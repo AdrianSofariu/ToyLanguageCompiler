@@ -3,8 +3,10 @@ package model.statements;
 import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.StatementException;
+import model.adt.MyIDictionary;
 import model.expressions.IExpression;
 import model.state.PrgState;
+import model.types.IType;
 import model.values.IValue;
 
 public class AssignStatement implements IStatement {
@@ -43,6 +45,16 @@ public class AssignStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new AssignStatement(variableName, expression.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws StatementException, ADTException, ExpressionException {
+        IType typeVar = typeEnv.get(variableName);
+        IType typeExp = expression.typeCheck(typeEnv);
+        if(!typeVar.equals(typeExp)){
+            throw new StatementException("Assignment: right hand side and left hand side have different types");
+        }
+        return typeEnv;
     }
 
     public String toString() {

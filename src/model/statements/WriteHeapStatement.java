@@ -4,8 +4,11 @@ import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.HeapException;
 import exceptions.StatementException;
+import model.adt.MyIDictionary;
 import model.expressions.IExpression;
 import model.state.PrgState;
+import model.types.IType;
+import model.types.RefType;
 import model.values.IValue;
 import model.values.RefValue;
 
@@ -57,6 +60,19 @@ public class WriteHeapStatement implements IStatement{
     @Override
     public IStatement deepCopy() {
         return new WriteHeapStatement(var, expression.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws StatementException, ADTException, ExpressionException {
+
+        IType varType = typeEnv.get(var);
+        IType expType = expression.typeCheck(typeEnv);
+
+        if(!varType.equals(new RefType(expType))){
+            throw new StatementException("WriteHeap: right hand side and left hand side have different types");
+        }
+
+        return typeEnv;
     }
 
     public String toString(){

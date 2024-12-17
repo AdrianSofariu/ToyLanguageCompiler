@@ -6,10 +6,7 @@ import model.adt.MyStack;
 import model.expressions.*;
 import model.state.PrgState;
 import model.statements.*;
-import model.types.BoolType;
-import model.types.IntType;
-import model.types.RefType;
-import model.types.StringType;
+import model.types.*;
 import model.values.BoolValue;
 import model.values.IValue;
 import model.values.IntValue;
@@ -17,10 +14,10 @@ import model.values.StringValue;
 import repository.IRepository;
 import repository.MyRepository;
 import view.TextMenu;
-import view.commands.ExitCommand;
-import view.commands.RunExampleCommand;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -165,14 +162,28 @@ public class Main {
         repo4.addPrgState(new PrgState(new MyList<String>(), new MyDictionary<String, IValue>(), new MyDictionary<StringValue, BufferedReader>(), new MyStack<IStatement>(), new MyHeap(), exFork3));
         Controller ctrl4 = new Controller(repo4);
 
+        //program that will not pass the type check f.e while with a non-boolean expression
+        //int v; v=4; (while (v) print(v);v=v-1);print(v)
+        IStatement terror = new CompoundStatement(new VarDecStatement("v", new IntType()), new CompoundStatement(
+                new AssignStatement("v", new ValueExpression(new IntValue(4))),
+              new WhileStatement(new VariableExpression("v"), new CompoundStatement(new PrintStatement(new VariableExpression("v")),
+              new AssignStatement("v", new ArithmeticExpression(new VariableExpression("v"), ArithmeticalOperator.MINUS, new ValueExpression(new IntValue(1))))))));
 
 
-        TextMenu menu = new TextMenu();
+        /*TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
         //menu.addCommand(new RunExampleCommand("1", "run example garbageCol1", ctrl));
         //menu.addCommand(new RunExampleCommand("2", "run example garbageCol2", ctrl2));
         //menu.addCommand(new RunExampleCommand("3", "run example rH/wH", ctrl3));
-        menu.addCommand(new RunExampleCommand("4", "run example fork", ctrl4));
+        menu.addCommand(new RunExampleCommand("4", "run example fork", ctrl4));*/
+
+        List<IStatement> prgs = new ArrayList<>();
+        prgs.add(exFork);
+        prgs.add(exFork2);
+        prgs.add(exFork3);
+        prgs.add(terror);
+
+        TextMenu menu = new TextMenu(prgs);
 
         menu.show();
 

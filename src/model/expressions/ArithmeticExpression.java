@@ -4,6 +4,7 @@ import exceptions.ADTException;
 import exceptions.ExpressionException;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
+import model.types.IType;
 import model.types.IntType;
 import model.values.IValue;
 import model.values.IntValue;
@@ -58,6 +59,24 @@ public class ArithmeticExpression implements IExpression {
     @Override
     public IExpression deepCopy() {
         return new ArithmeticExpression(left.deepCopy(), operator, right.deepCopy());
+    }
+
+    @Override
+    public IType typeCheck(MyIDictionary<String, IType> typeEnv) throws ExpressionException, ADTException {
+        IType t1, t2;
+        t1 = left.typeCheck(typeEnv);
+        t2 = right.typeCheck(typeEnv);
+        if(t1.equals(new IntType())){
+            if(t2.equals(new IntType())){
+                return new IntType();
+            }
+            else{
+                throw new ExpressionException("second operand is not an integer");
+            }
+        }
+        else{
+            throw new ExpressionException("first operand is not an integer");
+        }
     }
 
     public String toString(){

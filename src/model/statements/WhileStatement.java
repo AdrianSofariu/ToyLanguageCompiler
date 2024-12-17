@@ -3,9 +3,11 @@ package model.statements;
 import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.StatementException;
+import model.adt.MyIDictionary;
 import model.expressions.IExpression;
 import model.state.PrgState;
 import model.types.BoolType;
+import model.types.IType;
 import model.values.BoolValue;
 import model.values.IValue;
 
@@ -42,6 +44,18 @@ public class WhileStatement implements IStatement{
     @Override
     public IStatement deepCopy() {
         return new WhileStatement(expression.deepCopy(), statement.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws StatementException, ADTException, ExpressionException {
+        IType typeExpr = expression.typeCheck(typeEnv);
+        if(typeExpr.equals(new BoolType())) {
+            statement.typeCheck(typeEnv.deepCopy());
+            return typeEnv;
+        }
+        else{
+            throw new StatementException("The condition of while is not a boolean");
+        }
     }
 
     public String toString(){

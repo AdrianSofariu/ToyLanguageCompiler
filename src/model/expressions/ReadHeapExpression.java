@@ -5,6 +5,7 @@ import exceptions.ExpressionException;
 import exceptions.HeapException;
 import model.adt.MyIDictionary;
 import model.adt.MyIHeap;
+import model.types.IType;
 import model.types.RefType;
 import model.values.IValue;
 import model.values.RefValue;
@@ -49,5 +50,14 @@ public class ReadHeapExpression implements IExpression{
     @Override
     public IExpression deepCopy() {
         return new ReadHeapExpression(expr.deepCopy());
+    }
+
+    @Override
+    public IType typeCheck(MyIDictionary<String, IType> typeEnv) throws ExpressionException, ADTException {
+        IType type = expr.typeCheck(typeEnv);
+        if(type instanceof RefType reft){
+            return reft.getInner();
+        }
+        throw new ExpressionException("the rH argument is not a reference type");
     }
 }

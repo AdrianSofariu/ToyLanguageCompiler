@@ -3,9 +3,11 @@ package model.statements;
 import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.StatementException;
+import model.adt.MyIDictionary;
 import model.expressions.IExpression;
 import model.state.PrgState;
 import model.types.BoolType;
+import model.types.IType;
 import model.values.BoolValue;
 import model.values.IValue;
 
@@ -47,6 +49,17 @@ public class IfStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new IfStatement(expression.deepCopy(), statementThen.deepCopy(), statementElse.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws StatementException, ADTException, ExpressionException {
+        IType exprTyp = expression.typeCheck(typeEnv);
+        if(!exprTyp.equals(new BoolType())){
+            throw new StatementException("The condition of IF is not a boolean");
+        }
+        statementThen.typeCheck(typeEnv.deepCopy());
+        statementElse.typeCheck(typeEnv.deepCopy());
+        return typeEnv;
     }
 
     public String toString(){

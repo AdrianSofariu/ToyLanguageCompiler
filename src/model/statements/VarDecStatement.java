@@ -3,6 +3,7 @@ package model.statements;
 import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.StatementException;
+import model.adt.MyIDictionary;
 import model.expressions.VariableExpression;
 import model.state.PrgState;
 import model.types.IType;
@@ -28,6 +29,12 @@ public class VarDecStatement implements IStatement{
     @Override
     public IStatement deepCopy() {
         return new VarDecStatement(variableName, typ);
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws StatementException, ADTException, ExpressionException {
+        typeEnv.insert(variableName, typ);
+        return typeEnv;
     }
 
     public String toString() {

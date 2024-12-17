@@ -3,8 +3,10 @@ package model.statements;
 import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.StatementException;
+import model.adt.MyIDictionary;
 import model.expressions.IExpression;
 import model.state.PrgState;
+import model.types.IType;
 import model.types.RefType;
 import model.values.IValue;
 import model.values.RefValue;
@@ -51,5 +53,18 @@ public class HeapAllocStatement implements IStatement{
     @Override
     public IStatement deepCopy() {
         return new HeapAllocStatement(var, expression.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws StatementException, ADTException, ExpressionException {
+        IType varType = typeEnv.get(var);
+        IType expType = expression.typeCheck(typeEnv);
+
+        if(varType.equals(new RefType(expType))){
+            return typeEnv;
+        }
+        else{
+            throw new StatementException("HeapAllocStatement: right hand side and left hand side have different types");
+        }
     }
 }

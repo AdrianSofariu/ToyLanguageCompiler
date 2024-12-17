@@ -3,7 +3,9 @@ package model.statements;
 import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.StatementException;
+import model.adt.MyIDictionary;
 import model.state.PrgState;
+import model.types.IType;
 
 public class CompoundStatement implements IStatement {
 
@@ -26,6 +28,11 @@ public class CompoundStatement implements IStatement {
     @Override
     public IStatement deepCopy() {
         return new CompoundStatement(statement1.deepCopy(), statement2.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws StatementException, ADTException, ExpressionException {
+        return statement2.typeCheck(statement1.typeCheck(typeEnv));
     }
 
     public String toString(){

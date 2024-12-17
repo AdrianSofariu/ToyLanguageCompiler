@@ -4,8 +4,10 @@ import exceptions.ADTException;
 import exceptions.ExpressionException;
 import exceptions.KeyNotFoundException;
 import exceptions.StatementException;
+import model.adt.MyIDictionary;
 import model.expressions.IExpression;
 import model.state.PrgState;
+import model.types.IType;
 import model.types.StringType;
 import model.values.IValue;
 import model.values.StringValue;
@@ -54,6 +56,15 @@ public class CloseRFileStatement implements IStatement{
     @Override
     public IStatement deepCopy() {
         return new CloseRFileStatement(exp.deepCopy());
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws StatementException, ADTException, ExpressionException {
+        IType expType = exp.typeCheck(typeEnv);
+        if(!expType.equals(new StringType())){
+            throw new StatementException("File name is not a string");
+        }
+        return typeEnv;
     }
 
     public String toString(){
