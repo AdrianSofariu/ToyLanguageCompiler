@@ -19,12 +19,12 @@ public class MyDictionary<K,V> implements MyIDictionary<K,V>{
     }
     
     @Override
-    public void insert(K key, V value) {
+    public synchronized void insert(K key, V value) {
         map.put(key, value);
     }
 
     @Override
-    public void remove(K key) throws KeyNotFoundException {
+    public synchronized void remove(K key) throws KeyNotFoundException {
         if(map.containsKey(key))
             map.remove(key);
         else
@@ -32,12 +32,12 @@ public class MyDictionary<K,V> implements MyIDictionary<K,V>{
     }
 
     @Override
-    public boolean contains(K key) {
+    public synchronized boolean contains(K key) {
         return map.containsKey(key);
     }
 
     @Override
-    public V get(K key) throws KeyNotFoundException {
+    public synchronized V get(K key) throws KeyNotFoundException {
         if(map.containsKey(key))
             return map.get(key);
         else
@@ -45,7 +45,7 @@ public class MyDictionary<K,V> implements MyIDictionary<K,V>{
     }
 
     @Override
-    public Set<K> getKeys() {
+    public synchronized Set<K> getKeys() {
         return map.keySet();
     }
 

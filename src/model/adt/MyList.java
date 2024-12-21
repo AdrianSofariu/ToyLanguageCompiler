@@ -14,24 +14,24 @@ public class MyList<T> implements MyIList<T> {
     }
 
     @Override
-    public void add(T element) {
+    public synchronized void add(T element) {
         list.add(element);
     }
 
     @Override
-    public List<T> getAll() {
+    public synchronized List<T> getAll() {
         return list;
     }
 
     @Override
-    public T get(int index) throws IndexOutOfBoundsException {
+    public synchronized T get(int index) throws IndexOutOfBoundsException {
         if(index < 0 || index >= list.size())
             throw new IndexOutOfBoundsException("Index out of bounds");
         return list.get(index);
     }
 
     @Override
-    public String toString() {
+    public synchronized String toString() {
         StringBuilder str = new StringBuilder();
         for(T elements : list)
             str.append(elements).append("\n");

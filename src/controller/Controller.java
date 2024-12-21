@@ -46,7 +46,7 @@ public class Controller {
             throw new ControllerException(e.getMessage());
         }
 
-        executor = Executors.newFixedThreadPool(1);
+        executor = Executors.newFixedThreadPool(2);
 
         //remove the completed programs
         List<PrgState> prgList = removeCompletedPrg(repo.getStates());

@@ -16,14 +16,14 @@ public class MyHeap implements MyIHeap{
     }
 
     @Override
-    public int allocate(IValue value) {
+    public synchronized int allocate(IValue value) {
         lastAddress++;
         map.put(lastAddress, value);
         return lastAddress;
     }
 
     @Override
-    public IValue getValue(int address) throws HeapException{
+    public synchronized IValue getValue(int address) throws HeapException{
         IValue res;
         if((res = map.get(address)) != null)
             return res;
@@ -32,7 +32,7 @@ public class MyHeap implements MyIHeap{
     }
 
     @Override
-    public boolean contains(int address) {
+    public synchronized boolean contains(int address) {
         return map.containsKey(address);
     }
 
@@ -45,12 +45,12 @@ public class MyHeap implements MyIHeap{
     }
 
     @Override
-    public Map<Integer, IValue> getContent() {
+    public synchronized Map<Integer, IValue> getContent() {
         return map;
     }
 
     @Override
-    public void setContent(Map<Integer, IValue> newContent) {
+    public synchronized void setContent(Map<Integer, IValue> newContent) {
         map = newContent;
     }
 
